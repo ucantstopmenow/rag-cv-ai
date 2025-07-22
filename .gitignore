@@ -35,3 +35,16 @@ dist/
 *.sln
 *.sw?
 ```
+__pycache__/
+*.pyc
+*.pyo
+.env
+.idea
+venv/
+.cache/
+.faiss/
+.dockerignore
+.cache/
+.faiss/
+*.bin
+*.safetensors
