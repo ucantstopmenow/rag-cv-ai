@@ -40,11 +40,8 @@ __pycache__/
 *.pyo
 .env
 .idea
-venv/
 .cache/
-.faiss/
-.dockerignore
-.cache/
-.faiss/
+#.faiss/
+#.dockerignore
 *.bin
 *.safetensors
