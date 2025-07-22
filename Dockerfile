@@ -1,26 +1,28 @@
-# ---- BASE ----
-FROM python:3.11-slim
+# Dockerfile otimizado para deploy no Hugging Face Spaces
+FROM python:3.10-slim
+
+# Reduz o tamanho da imagem
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Diretório de trabalho
+WORKDIR /app
 
 # Instala dependências do sistema
 RUN apt-get update && apt-get install -y \
     build-essential \
-    curl \
+    libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
 
-# Cria diretório da aplicação
-WORKDIR /app
-
-# Copia os arquivos de dependências
-COPY requirements.txt .
-
-# Instala dependências do projeto
-RUN pip install --no-cache-dir -r requirements.txt
+# Copia apenas os arquivos essenciais
+COPY requirements.txt ./
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Copia o restante do código
 COPY . .
 
-# Porta usada pela API
-EXPOSE 8000
+# Exposição da porta para o Spaces
+EXPOSE 7860
 
-# Comando de inicialização
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Comando para iniciar o FastAPI com Uvicorn
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]

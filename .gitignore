@@ -41,7 +41,12 @@ __pycache__/
 .env
 .idea
 .cache/
-#.faiss/
+.faiss/
 #.dockerignore
 *.bin
 *.safetensors
+*.pdf
+*.pkl
+*.faiss
+*.bin
+
