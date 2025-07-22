@@ -2,6 +2,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from app.schema import JobInput, AnalysisResponse
 from app.chains import analyze_job_requirements
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = FastAPI(
     title="Henrique CV Analyzer",
